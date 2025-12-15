@@ -1,0 +1,352 @@
+/* ===============================
+   Global Reset & Variables
+================================ */
+:root {
+  --bg: #0b0f19;
+  --card: #12172a;
+  --primary: #4f8cff;
+  --secondary: #00e5ff;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(180deg, #0b0f19 0%, #020617 100%);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   Animated Background Grid
+================================ */
+body::before {
+    display: none;
+
+}
+
+@keyframes moveGrid {
+  from { background-position: 0 0; }
+  to { background-position: 200px 200px; }
+}
+
+/* ===============================
+   Navbar
+================================ */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(12px);
+  background: rgba(11, 15, 25, 0.6);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===============================
+   Hero Section
+================================ */
+.hero {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
+.hero p {
+  margin-top: 1.2rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* ===============================
+   Cards
+================================ */
+.section {
+  padding: 4rem 3rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.8rem;
+  transition: transform 0.4s, box-shadow 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(79,140,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ===============================
+   Footer
+================================ */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  margin-top: 4rem;
+}
+
+/* ===============================
+   Scroll Reveal Animations
+================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  box-shadow:
+    0 0 0 1px rgba(79,140,255,0.4),
+    0 30px 80px rgba(79,140,255,0.25);
+}
+
+.btn:hover {
+  box-shadow:
+    0 0 15px rgba(0,229,255,0.8),
+    0 10px 40px rgba(79,140,255,0.5);
+}
+
+/* ===============================
+   Global Button System
+================================ */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  padding: 0.75rem 1.6rem;
+  border-radius: 10px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  color: #020617;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+
+  border: none;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* Light shimmer overlay */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* Hover */
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 10px 30px rgba(79, 140, 255, 0.45),
+    0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+/* Active */
+.btn:active {
+  transform: translateY(-1px) scale(1);
+  box-shadow:
+    0 6px 18px rgba(79, 140, 255, 0.3);
+}
+
+/* ===============================
+   Button Variants
+================================ */
+
+/* Secondary (subtle) */
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: rgba(79, 140, 255, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(79, 140, 255, 0.35),
+    0 10px 30px rgba(79, 140, 255, 0.25);
+}
+
+/* Outline */
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background: rgba(79, 140, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(79, 140, 255, 0.4),
+    0 10px 30px rgba(79, 140, 255, 0.3);
+}
+
+/* Small button */
+.btn-sm {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+}
+
+/* Disabled */
+.btn[disabled],
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ===============================
+   Hero Buttons Alignment
+================================ */
+.hero .buttons {
+  margin-top: 2.2rem;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   Polished Mode (No Motion)
+================================ */
+* {
+  animation: none !important;
+  transition: color 0.2s ease, background-color 0.2s ease,
+              box-shadow 0.2s ease, border-color 0.2s ease;
+}
