@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import * as emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -20,31 +21,41 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      // Dynamic import for client-side only
-      const emailjs = (await import('@emailjs/browser')).default;
-
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      if (!serviceId || !templateId || !publicKey) {
-        // Demo fallback
-        console.warn("EmailJS not configured. Running in demo mode.");
-        await new Promise(resolve => setTimeout(resolve, 1300));
+      // Check if keys are missing or still placeholders
+      const isPlaceholder = 
+        !serviceId || !templateId || !publicKey ||
+        serviceId.includes('xxxx') || 
+        templateId.includes('xxxx') || 
+        publicKey.includes('your_');
 
+      if (isPlaceholder) {
+        // DEMO MODE — COMPLETELY SILENT (no console logs at all)
+        await new Promise(resolve => setTimeout(resolve, 600));
+
+        // Show toast only once per browser session (prevents repeated messages)
+        if (typeof window !== 'undefined' && !(window as any).__emailjs_toast_shown) {
+          toast.error("EmailJS keys not set yet", {
+            description: "Demo mode. Add real keys in .env.local to enable actual emails (see README.md)",
+          });
+          (window as any).__emailjs_toast_shown = true;
+        }
+
+        // Show nice success UI for visitors
         setSubmitted(true);
-        toast.success("Message received (Demo Mode)", {
-          description: "EmailJS keys not set yet. See README for setup.",
-        });
-
         setTimeout(() => {
           setFormData({ name: '', email: '', message: '' });
           setSubmitted(false);
-        }, 2400);
+        }, 2300);
+
+        setLoading(false);
         return;
       }
 
-      // === REAL EMAIL SENT ===
+      // === REAL EMAIL SENDING ===
       const result = await emailjs.send(
         serviceId,
         templateId,
@@ -69,12 +80,12 @@ export default function Contact() {
           setSubmitted(false);
         }, 2600);
       } else {
-        throw new Error("EmailJS failed");
+        throw new Error("Failed to send");
       }
     } catch (error) {
-      console.error("Email sending failed:", error);
+      console.error("EmailJS Error:", error);
       toast.error("Failed to send message", {
-        description: "Please try again or reach out via LinkedIn.",
+        description: "Please try LinkedIn or GitHub instead.",
       });
     } finally {
       setLoading(false);
@@ -90,10 +101,10 @@ export default function Contact() {
       <div className="text-center mb-9">
         <div className="uppercase tracking-[3px] text-xs text-[#64748B]">COMMUNICATION TERMINAL</div>
         <div className="section-header text-5xl font-semibold tracking-[-2px] mt-1">Send Message</div>
-        <p className="mt-3 text-[#A5B4FC]">This form now sends real emails to my inbox.</p>
+        <p className="mt-3 text-[#A5B4FC]">This form sends real emails directly to my inbox.</p>
       </div>
 
-      <div className="glass rounded-3xl p-8 md:p-10 max-w-[620px] mx-auto">
+      <div className="glass rounded-3xl p-8 md:p-10 max-w-155 mx-auto">
         {!submitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -104,7 +115,7 @@ export default function Contact() {
                   name="name" 
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-[#111827] border border-white/10 rounded-2xl px-5 py-[13px] text-sm placeholder:text-[#64748B] outline-none focus:border-[#00F5FF]/40" 
+                  className="w-full bg-[#111827] border border-white/10 rounded-2xl px-5 py-3.25 text-sm placeholder:text-[#64748B] outline-none focus:border-[#00F5FF]/40" 
                   placeholder="Jane Cooper" 
                   required
                 />
@@ -116,7 +127,7 @@ export default function Contact() {
                   name="email" 
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-[#111827] border border-white/10 rounded-2xl px-5 py-[13px] text-sm placeholder:text-[#64748B] outline-none focus:border-[#00F5FF]/40" 
+                  className="w-full bg-[#111827] border border-white/10 rounded-2xl px-5 py-3.25 text-sm placeholder:text-[#64748B] outline-none focus:border-[#00F5FF]/40" 
                   placeholder="jane@company.com" 
                   required
                 />
@@ -130,7 +141,7 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={5}
-                className="w-full bg-[#111827] border border-white/10 rounded-3xl px-5 py-4 text-sm placeholder:text-[#64748B] outline-none resize-y min-h-[120px] focus:border-[#00F5FF]/40" 
+                className="w-full bg-[#111827] border border-white/10 rounded-3xl px-5 py-4 text-sm placeholder:text-[#64748B] outline-none resize-y min-h-30 focus:border-[#00F5FF]/40" 
                 placeholder="Hi Sanskriti, I saw your Game Performance Predictor project..." 
                 required
               />
@@ -141,12 +152,12 @@ export default function Contact() {
               disabled={loading}
               className="mt-2 w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-[#00F5FF] text-[#050816] font-medium hover:bg-[#5EEAD4] disabled:opacity-60 transition-all"
             >
-              {loading ? "TRANSMITTING TO INBOX..." : "SEND MESSAGE TO SANSKRITI"} 
+              {loading ? "SENDING TO MY INBOX..." : "SEND MESSAGE TO SANSKRITI"} 
               <Send size={16} />
             </button>
 
             <p className="text-center text-[10px] text-[#64748B] pt-1">
-              This is a live contact form powered by EmailJS
+              Powered by EmailJS • Real emails delivered
             </p>
           </form>
         ) : (
@@ -155,7 +166,7 @@ export default function Contact() {
               <CheckCircle className="w-9 h-9 text-emerald-400" />
             </div>
             <div className="text-2xl tracking-tight font-semibold">Message Sent!</div>
-            <div className="text-[#5EEAD4] mt-2">Thank you. I'll get back to you soon.</div>
+            <div className="text-[#5EEAD4] mt-2">Thank you. I'll reply within 48 hours.</div>
           </div>
         )}
 

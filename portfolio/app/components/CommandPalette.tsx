@@ -90,7 +90,7 @@ export default function CommandPalette() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[18vh]">
+        <div className="fixed inset-0 z-100 flex items-start justify-center pt-[18vh]">
           <div className="fixed inset-0 bg-black/70" onClick={() => setIsOpen(false)} />
           
           <motion.div 
@@ -98,7 +98,7 @@ export default function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
             transition={{ duration: 0.14, ease: [0.23, 1, 0.32, 1] }}
-            className="command-palette relative w-full max-w-[540px] mx-4 glass rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+            className="command-palette relative w-full max-w-135 mx-4 glass rounded-3xl overflow-hidden shadow-2xl border border-white/10"
           >
             {/* Search Header */}
             <div className="flex items-center px-5 py-4 border-b border-white/10">
@@ -118,7 +118,7 @@ export default function CommandPalette() {
             </div>
 
             {/* Results */}
-            <div className="max-h-[340px] overflow-y-auto p-2">
+            <div className="max-h-85 overflow-y-auto p-2">
               {filteredCommands.length === 0 ? (
                 <div className="px-5 py-8 text-center text-[#64748B] text-sm">No results found</div>
               ) : (
@@ -130,12 +130,12 @@ export default function CommandPalette() {
                       setIsOpen(false);
                     }}
                     onMouseEnter={() => setSelectedIndex(idx)}
-                    className={`w-full flex items-center justify-between px-4 py-[13px] rounded-2xl text-left transition-all ${
+                    className={`w-full flex items-center justify-between px-4 py-3.25 rounded-2xl text-left transition-all ${
                       idx === selectedIndex ? 'bg-white/10' : 'hover:bg-white/5'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="text-[#00F5FF] text-[10px] font-mono tracking-widest w-[72px]">{cmd.category}</div>
+                      <div className="text-[#00F5FF] text-[10px] font-mono tracking-widest w-18">{cmd.category}</div>
                       <span className="text-[15px]">{cmd.label}</span>
                     </div>
                     {cmd.shortcut && <div className="text-xs text-[#64748B]">{cmd.shortcut}</div>}

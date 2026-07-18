@@ -42,7 +42,7 @@ export default function Experience() {
               <div className="ml-auto font-mono text-xs text-[#64748B]">{exp.period}</div>
             </div>
 
-            <ul className="space-y-[9px] text-[#A5B4FC] text-[15px]">
+            <ul className="space-y-2.25 text-[#A5B4FC] text-[15px]">
               {exp.points.map((point, i) => (
                 <li key={i} className="flex gap-2.5">
                   <span className="text-[#00F5FF] mt-1">→</span> {point}

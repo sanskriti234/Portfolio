@@ -17,7 +17,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80" onClick={onClose}>
+        <div className="fixed inset-0 z-110 flex items-center justify-center p-4 bg-black/80" onClick={onClose}>
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
