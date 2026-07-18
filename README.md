@@ -1,6 +1,7 @@
 # Sanskriti Mishra — AI/ML Portfolio
-**My Portfolio : https://portfolio-9oac36bdg-sanskriti234s-projects.vercel.app/
-**
+
+# My Portfolio : https://portfolio-9oac36bdg-sanskriti234s-projects.vercel.app/
+
 **A world-class, premium AI-native portfolio website** that feels like an advanced AI operating system.
 
 Built for recruiters at OpenAI, Google DeepMind, Anthropic, NVIDIA, Meta AI, etc.
