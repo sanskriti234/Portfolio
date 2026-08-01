@@ -156,8 +156,6 @@ export default function AIPortfolio() {
             {[
               { node: "Python", type: "Core", connections: 9 },
               { node: "scikit-learn", type: "Core", connections: 7 },
-              { node: "Game Performance", type: "Project", connections: 4 },
-              { node: "Naive Bayes", type: "Project", connections: 3 },
               { node: "Pandas", type: "Core", connections: 8 },
               { node: "TensorFlow", type: "ML", connections: 4 },
               { node: "NLP", type: "Domain", connections: 5 },
@@ -171,7 +169,6 @@ export default function AIPortfolio() {
               </div>
             ))}
           </div>
-          <div className="text-center text-xs text-[#64748B] mt-6">Click any node to filter projects (demo)</div>
         </div>
       </div>
 
@@ -215,7 +212,7 @@ export default function AIPortfolio() {
               </div>
             ))}
           </div>
-          <div className="text-xs text-center mt-4 text-[#64748B]">Last 12 months • 83 contributions recorded</div>
+          <div className="text-xs text-center mt-4 text-[#64748B]">Last 12 months • 93 contributions recorded</div>
         </div>
       </div>
 
