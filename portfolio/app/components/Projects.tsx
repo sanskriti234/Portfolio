@@ -21,32 +21,59 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Naive Bayes Classifier",
-    description: "Built a Naive Bayes classifier from scratch in pure Python and NumPy. Tested on multiple classification datasets with high accuracy. Includes Laplace smoothing and log probabilities.",
+    title: "HindsightOps — AI Incident Memory Agent",
+    description:
+      "LLM-powered incident response assistant combining Retrieval-Augmented Generation (RAG) with organizational memory. Enables semantic search across historical incidents, automated RCA generation, and multi-provider LLM fallback for production reliability.",
     status: "LIVE",
-    accuracy: "92.4%",
-    inferenceTime: "4ms",
-    complexity: "Low",
-    tech: ["Python", "NumPy", "Pandas"],
-    github: "https://github.com/sanskriti234/Naive-Bayes-Classifier",
-    kaggleDataset: "https://www.kaggle.com/datasets/uciml/iris",
-    category: "CLASSIFICATION",
-    metrics: { accuracy: 92.4, precision: 93, recall: 91 }
+    accuracy: "94.1%",
+    inferenceTime: "820ms",
+    complexity: "High",
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "OpenAI",
+      "RAG",
+      "Vector Database"
+    ],
+    github: "https://github.com/sanskriti234/HindsightOps",
+    kaggleDataset: "",
+    category: "GENERATIVE AI",
+    metrics: {
+      accuracy: 94.1,
+      precision: 93,
+      recall: 95
+    }
   },
+  
   {
-    id: 3,
-    title: "Student Performance Prediction",
-    description: "End-to-end ML project predicting student final grades using linear regression, random forest, and gradient boosting. Comprehensive EDA and feature importance analysis.",
+    id: 1,
+    title: "CoreSight — Automated Attendance System",
+    description:
+      "AI-powered facial recognition attendance system using CNN-based 128-dimensional facial encoding for real-time identity verification. Achieved 86.5% system accuracy across test scenarios. Research paper published at ICSEAIS Conference 2026.",
     status: "LIVE",
-    accuracy: "84.7%",
-    inferenceTime: "12ms",
-    complexity: "Medium",
-    tech: ["Python", "scikit-learn", "Pandas", "Seaborn"],
-    github: "https://github.com/sanskriti234",
-    kaggleDataset: "https://www.kaggle.com/datasets/nathanlauga/nba-players-statistics-2014-2015",
-    category: "REGRESSION",
-    metrics: { accuracy: 84.7, precision: 82, recall: 79, r2: 0.81 }
+    accuracy: "86.5%",
+    inferenceTime: "72ms",
+    complexity: "High",
+    tech: [
+      "Python",
+      "FastAPI",
+      "OpenCV",
+      "SQLite",
+      "CNN",
+      "Computer Vision"
+    ],
+    github: "https://github.com/sanskriti234/CoreSight",
+    kaggleDataset: "",
+    category: "COMPUTER VISION",
+    metrics: {
+      accuracy: 86.5,
+      precision: 88,
+      recall: 85
+    }
   },
+  
   {
     id: 4,
     title: "Breast Cancer Diagnosis",
@@ -61,6 +88,7 @@ const projects: Project[] = [
     category: "CLASSIFICATION",
     metrics: { accuracy: 96.8, precision: 95, recall: 98 }
   },
+  
   {
     id: 5,
     title: "Sentiment Analysis on Reviews",
@@ -75,6 +103,7 @@ const projects: Project[] = [
     category: "NLP",
     metrics: { accuracy: 87.1, precision: 86, recall: 88 }
   },
+  
   {
     id: 6,
     title: "House Price Regression",
