@@ -86,15 +86,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <button 
-            onClick={() => {
-              const event = new KeyboardEvent('keydown', { key: 'k', metaKey: true });
-              document.dispatchEvent(event);
-            }}
-            className="hidden md:flex items-center gap-1.5 px-3.5 py-1.5 rounded-2xl border border-white/10 bg-white/5 text-xs hover:bg-white/10 transition-all"
-          >
-            <Command size={13} /> <span className="font-mono text-[#64748B]">K</span>
-          </button>
+         <a
+          href="/MY_RESUME.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-2xl border border-[#00F5FF]/30 bg-[#00F5FF]/10 text-sm font-medium text-[#00F5FF] hover:bg-[#00F5FF]/20 hover:border-[#00F5FF] transition-all">
+          Resume
+        </a>
 
           <a 
             href="https://github.com/sanskriti234" 
