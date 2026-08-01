@@ -12,8 +12,8 @@ const interestOptions = [
 
 const projectList = [
   { id: 1, title: "Game Academic Performance Predictor", category: "regression", score: 92, tech: "scikit-learn" },
-  { id: 2, title: "Naive Bayes Classifier", category: "classification", score: 87, tech: "NumPy" },
-  { id: 3, title: "Student Performance Prediction", category: "regression", score: 84, tech: "scikit-learn" },
+  { id: 2, title: "HindsightOps — AI Incident Memory Agent", category: "nlp", score: 96, tech: "Next.js · FastAPI · OpenAI · RAG", },
+  { id: 1, title: "CoreSight — Automated Attendance System", category: "classification", score: 86.4, tech: "Python · FastAPI · OpenCV · SQLite · CNN", },
   { id: 4, title: "Breast Cancer Diagnosis", category: "classification", score: 96, tech: "scikit-learn" },
   { id: 5, title: "Sentiment Analysis on Reviews", category: "nlp", score: 88, tech: "scikit-learn" },
   { id: 6, title: "House Price Regression", category: "regression", score: 90, tech: "XGBoost" },
