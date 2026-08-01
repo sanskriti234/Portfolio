@@ -4,20 +4,20 @@ import React from 'react';
 
 const experiences = [
   {
-    role: "Independent ML Researcher & Developer",
+    role: "Independent ML Developer",
     company: "Personal Projects & Kaggle",
-    period: "2024 — Present",
+    period: "2025 — Present",
     points: [
-      "Developed 6+ end-to-end ML systems using Python and scikit-learn",
+      "Developed end-to-end ML projects using Python and scikit-learn",
       "Trained and evaluated regression & classification models on Kaggle datasets",
       "Implemented feature engineering pipelines and model validation strategies",
-      "Built interactive visualizations and deployed model prototypes",
+      "Built interactive visualizations",
     ],
   },
   {
     role: "ML & Data Science Learner",
     company: "Kaggle Learn",
-    period: "2024",
+    period: "2026",
     points: [
       "Completed Intro to Machine Learning, Intermediate ML, Pandas, and Feature Engineering",
       "Applied concepts to real datasets in practical competitions and notebooks",
